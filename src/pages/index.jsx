@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Form from '../components/02-molecules/form';
 
 export default function Home() {
   return (
@@ -13,6 +14,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Stack spacing={4}>
+          <Form />
+        </Stack>
         <Stack spacing={4}>
           <Stack>
             <Typography variant="h1" gutterBottom>
