@@ -3,6 +3,7 @@ import { useState, useMemo } from "react";
 import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import Typography from '@mui/material/Typography';
 import UploadFromCamera from "./upload-from-camera";
 
 export default function QuiltmeForm() {
@@ -20,7 +21,7 @@ export default function QuiltmeForm() {
 
   const uploadContent = useMemo(() => {
     if (useGallery) {
-      return <h1>Upload from gallery</h1>;
+      return <Typography variant="subtitle1" gutterBottom>Upload from gallery</Typography>;
     } else if (useCamera) {
       return <UploadFromCamera setPhotoURL={setPhotoURL} />;
     } else {
@@ -50,10 +51,10 @@ export default function QuiltmeForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack>
-        <p>
+        <Typography variant="subtitle1" gutterBottom>
           Upload your photo either by selecting a favorite from your gallery or
           taking one using your camera.
-        </p>
+        </Typography>
         {uploadContent}
       </Stack>
       <Stack>
