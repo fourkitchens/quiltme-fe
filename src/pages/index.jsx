@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Container } from '@mui/material';
 
 export default function Home() {
   return (
@@ -13,29 +14,34 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Stack spacing={4}>
-          <Stack>
-            <Typography variant="h1" gutterBottom>
-              h1. Heading
-            </Typography>
-            <Typography variant="h2" gutterBottom>
-              h2. Heading
-            </Typography>
-          </Stack>
+        <Container maxWidth="md">
+          <Stack spacing={4}>
+            <Stack>
+              <Typography variant="h1" gutterBottom>
+                h1. QuiltMe.ai
+              </Typography>
+              <Typography variant="h2" gutterBottom>
+                h2. Knot your typical image transformation
+              </Typography>
+            </Stack>
 
-          <Stack>
-            <Typography variant="default-text" gutterBottom>
-              default-text. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-              blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-              neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
-              quasi quidem quibusdam.
-            </Typography>
-          </Stack>
+            <Stack>
+              <Typography variant="large-text" gutterBottom>
+                large-text. Transform your images into stunning, quilt-inspired graphics using cutting-edge AI technology. QuiltMe.ai is not simply about creating stunning visuals. It demonstrates the power and potential of Drupal by pushing the boundaries of what is possible, revolutionizing how we approach image creation altogether.
+              </Typography>
+              <Typography variant="default-text" gutterBottom>
+                default-text. Teams can use our AI-powered Drupal integration to develop a distinctive house style, apply art direction on the fly, and create stunning and one-of-a-kind branded graphics that are as unique as you are.
+              </Typography>
+              <Typography variant="small-text" gutterBottom>
+                small-text. Created by Four Kitchens
+              </Typography>
+            </Stack>
 
-          <Stack spacing={2} direction="row">
-            <Button variant="contained" color="electric-orange">Contained</Button>
+            <Stack spacing={2} direction="row">
+              <Button variant="contained" color="electric-orange">Press me!</Button>
+            </Stack>
           </Stack>
-        </Stack>
+        </Container>
       </main>
     </>
   )

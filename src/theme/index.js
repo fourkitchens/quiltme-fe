@@ -1,5 +1,19 @@
 import { createTheme } from '@mui/material/styles';
 
+const fontAlbertSans = [
+  'Albert Sans',
+  '-apple-system',
+  'BlinkMacSystemFont',
+  '"Segoe UI"',
+  'Roboto',
+  '"Helvetica Neue"',
+  'Arial',
+  'sans-serif',
+  '"Apple Color Emoji"',
+  '"Segoe UI Emoji"',
+  '"Segoe UI Symbol"',
+].join(',')
+
 const theme = createTheme({
   palette: {
     'electric-orange': {
@@ -46,71 +60,41 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Albert Sans, sans-serif',
+    fontFamily: fontAlbertSans,
+    h1: {
+      fontSize: 'clamp(2.375rem, 1.8333333333333333rem + 2.7083333333333335vw, 4rem)',
+      fontWeight: 800,
+      lineHeight: '116%',
+    },
+    h2: {
+      fontSize: 'clamp(1.5625rem, 1.25rem + 1.5625vw, 2.5rem)',
+      fontWeight: 800,
+      lineHeight: '116%',
+    },
+    'large-text': {
+      fontFamily: fontAlbertSans,
+      fontSize: 'clamp(1.125rem, 1rem + 0.625vw, 1.5rem)',
+      fontWeight: 500,
+      lineHeight: '116%',
+    },
+    'default-text': {
+      fontFamily: fontAlbertSans,
+      fontSize: 'clamp(1rem, 0.9166666666666666rem + 0.4166666666666667vw, 1.25rem)',
+      fontWeight: 500,
+      lineHeight: '125%',
+    },
+    'small-text': {
+      fontFamily: fontAlbertSans,
+      fontSize: 'clamp(0.75rem, 0.6666666666666666rem + 0.4166666666666667vw, 1rem)',
+      fontWeight: 500,
+      lineHeight: '125%',
+    },
+    button: {
+      fontFamily: fontAlbertSans,
+      fontSize: 'clamp(1.25rem, 1.1666666666666667rem + 0.4166666666666667vw, 1.5rem)',
+      fontWeight: 800,
+    }
   },
 });
-
-theme.typography = {
-  h1: {
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '38px',
-      fontWeight: 800,
-      lineHeight: '116%',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '64px',
-    },
-  },
-  h2: {
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '25px',
-      fontWeight: 800,
-      lineHeight: '116%',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '40px',
-    },
-  },
-  'large-text': {
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '18px',
-      fontWeight: 500,
-      lineHeight: '116%',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '24px',
-    },
-  },
-  'default-text': {
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '16px',
-      fontWeight: 500,
-      lineHeight: '125%',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '20px',
-    },
-  },
-  'small-text': {
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '12px',
-      fontWeight: 500,
-      lineHeight: '125%',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '16px',
-    },
-  },
-  button: {
-    [theme.breakpoints.up('sm')]: {
-      fontSize: '20px',
-      fontWeight: 800,
-      textTransform: 'none',
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '24px',
-    },
-  }
-};
 
 export default theme;
