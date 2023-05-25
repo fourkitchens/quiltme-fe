@@ -12,15 +12,15 @@ const dash = keyframes`
 `;
 
 export default function Logo() {
+  const wrapperStyles = {
+    '& svg': {
+      strokeDasharray: '9 16',
+      animation: `${dash} 40s linear infinite`
+    }
+  };
+
   return (
-    <Box
-      sx={{
-        '& svg': {
-          strokeDasharray: '9 16',
-          animation: `${dash} 40s linear infinite`
-        }
-      }}
-    >
+    <Box sx={wrapperStyles}>
       <LogoIcon />
     </Box>
   );

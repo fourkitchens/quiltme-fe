@@ -5,11 +5,8 @@ import PageFooter from '../ui/02-molecules/page-footer';
 export default function PageLayoutWrapper({ children }) {
   return (
     <div>
-      <a href="#main-content">Skip to main content</a>
       <PageHeader />
-      <main id="main-content">
-        {children}
-      </main>
+      {children}
       <PageFooter />
     </div>
   );

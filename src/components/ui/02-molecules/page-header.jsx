@@ -1,24 +1,21 @@
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Logo from './logo';
+import Box from '@mui/material/Box';
 
-export default function PageHeader({ logo }) {
+export default function PageHeader() {
+  const wrapperStyles = {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+  };
+
   return (
     <header>
-      <Box
-        sx={{
-          flex: 1,
-          display: 'flex',
-          justifyContent: 'flex-end',
-        }}
-      >
+      <Box sx={wrapperStyles}>
         <Logo />
       </Box>
     </header>
   );
 }
-
-PageHeader.propTypes = {
-  logo: PropTypes.object,
-};
