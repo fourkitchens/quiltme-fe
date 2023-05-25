@@ -8,31 +8,12 @@ export default function PageHeader({ logo }) {
     <header>
       <Box
         sx={{
+          flex: 1,
           display: 'flex',
-          justifyContent: 'space-between'
+          justifyContent: 'flex-end',
         }}
       >
-        <Box sx={{ flex: 1 }}></Box>
-        <Box
-          sx={{
-            flex: 1,
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignContent: 'flex-start',
-          }}
-        >
-          <Button variant="contained" h="100">Get quilted</Button>
-        </Box>
-        <Box
-          sx={{
-            flex: 1,
-            display: 'flex',
-            justifyContent: 'flex-end',
-          }}
-        >
-          <Logo />
-        </Box>
+        <Logo />
       </Box>
     </header>
   );
