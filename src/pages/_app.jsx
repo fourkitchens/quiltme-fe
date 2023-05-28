@@ -2,6 +2,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { css, Global } from '@emotion/react';
 import PropTypes from 'prop-types';
 import theme from '../theme';
+import PageLayoutWrapper from '../components/wrappers/page-layout-wrapper';
 
 // Google Fonts.
 const globalStyles = css`
@@ -12,7 +13,9 @@ export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <Global styles={globalStyles} />
-      <Component {...pageProps} />
+      <PageLayoutWrapper locale={pageProps.locale}>
+        <Component {...pageProps} />
+      </PageLayoutWrapper>
     </ThemeProvider>
   );
 }
