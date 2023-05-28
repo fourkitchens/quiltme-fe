@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { Container, Typography, Button, Stack  } from '@mui/material';
-import BottomBanner from '../components/02-molecules/bottom-banner';
 
 export default function Home() {
   return (
@@ -40,7 +39,6 @@ export default function Home() {
             </Stack>
           </Stack>
         </Container>
-        <BottomBanner />
       </main>
     </>
   )
