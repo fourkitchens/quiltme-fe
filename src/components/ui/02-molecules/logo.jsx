@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import { keyframes } from '@mui/system';
-import LogoIcon from "../../../img/logo.svg";
 
 const dash = keyframes`
   from {
@@ -11,7 +10,7 @@ const dash = keyframes`
   }
 `;
 
-export default function Logo() {
+export default function Logo({ children }) {
   const wrapperStyles = {
     '& svg': {
       strokeDasharray: '9 16',
@@ -21,7 +20,7 @@ export default function Logo() {
 
   return (
     <Box sx={wrapperStyles}>
-      <LogoIcon />
+      {children}
     </Box>
   );
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import * as React from "react";
+import {useState, forwardRef } from "react";
 import {
   Box,
   Grid,
@@ -16,13 +16,15 @@ import BackgroundPattern from "../01-atoms/background-pattern";
 import LogoIcon from "../../../img/4k-logo.svg";
 import CloseIcon from "../../../img/icons/close.svg";
 import SmallLogoIcon from "../../../img/small-logo.svg";
+import Logo from "./logo";
+import Team from "../../../img/4k-team.svg";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
+const Transition = forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} easing={{ enter: 'ease-out', exit: 'ease-out' }} />;
 });
 
 export default function BottomBanner() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const scroll = "body";
 
   const handleClickOpen = () => {
@@ -93,7 +95,6 @@ export default function BottomBanner() {
     position: "relative",
     display: ["flex", "flex", "block"],
     flexDirection: ["column", "column", "none"],
-    alignItems: ["flex-end", "flex-end", "none"],
     height: ["100%", "100%", "450px"],
   };
 
@@ -104,16 +105,17 @@ export default function BottomBanner() {
     ml: 0,
     width: ["90%", "90%", "100%"],
     height: "100%",
+    alignSelf: ["flex-end", "flex-end", "none"],
   };
 
   const patternWrapperStyles = {
     width: "100%",
-    height: ["571px", null, "660px"],
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
     zIndex: 1,
+    height: ["571px", "571px", "660px"],
   };
 
   const creditsContainerStyles = {
@@ -121,29 +123,36 @@ export default function BottomBanner() {
     flexDirection: ["column", "column", "row"],
     justifyContent: "space-between",
     backgroundColor: "gentle-yellow.main",
-    p: "37px",
-    m: "0 auto",
-    width: ["100%", "100%", "auto"],
+    p: ["28px", "37px"],
+    m: [0, 0, "0 auto"],
+    width: "auto",
   };
 
   const creditsTextStyles = {
     mb: 0,
-    maxWidth: "555px",
+    maxWidth: ['100%', '100%', "555px"],
     order: [1, null, 0],
   };
 
   const iconButtonStyles = {
-    width: "326px",
-    height: "37px",
+    width: ["279px", '279px', "326px"],
+    height: ["37px"],
     p: 0,
     order: [0, null, 1],
     mb: ["26px", null, 0],
+
+    "& svg": {
+      display: "block",
+      position: "relative",
+      width: "auto",
+      height: "auto",
+    },
   };
 
   const closeIconButtonStyles = {
     position: "absolute",
-    top: ["10px", null, 0],
-    right: ["80%", "82%", "40px"],
+    top: ["15px", '20px', 0],
+    right: ["75%", "82%", "40px"],
     
     "&:hover, &:focus": {
       backgroundColor: "transparent",
@@ -159,7 +168,7 @@ export default function BottomBanner() {
   const smallLogoIconButtonStyles = {
     display: ["block", null, "none"],
     position: "absolute",
-    top: 0,
+    top: '15px',
     right:"24px",
   };
 
@@ -176,30 +185,33 @@ export default function BottomBanner() {
         position: "absolute",
         right: "-12px",
         top: "12px",
+        zIndex: -1,
       },
     },
-  };
-
-  const gridImageStyles = {
-    pl: 0,
-    maxWidth: ["100%", null, "40% !important"],
   };
 
   const gridItemStyles = {
     pr: ["24px", "24px", 0],
   };
 
-  const imageSyles = {
+  const gridImageStyles = {
     display: "block",
     position: "relative",
-    width: ["322.67px", "322.67px", "100%"],
-    height: ["235.52px", "235.52px", "100%"],
+    pl: 0,
+    pt: 0,
+    maxWidth: ["100%", '100%', "40% !important"],
+    
+    '& div': {
+      width: ["255px", "322.67px", "100%",],
+      height: ["155px", "235.52px", "100%"],
+      m: '0 auto',
+    },
 
-    "& img": {
+    "& svg": {
       display: "block",
       position: "relative",
-      width: "100%",
-      width: "100%",
+      width: "auto",
+      height: "auto",
     },
   };
 
@@ -230,9 +242,9 @@ export default function BottomBanner() {
                 md={6}
                 sx={{ ...gridImageStyles, gridItemStyles }}
               >
-                <Stack sx={imageSyles}>
-                  <img src="/4k-team.svg" alt="Four Kitchens Team" />
-                </Stack>
+                <Logo>
+                  <Team />
+                </Logo>
               </Grid>
               <Grid item xs={12} md={6} sx={gridItemStyles}>
                 <Typography
@@ -250,7 +262,7 @@ export default function BottomBanner() {
                   looking for extra hands or a complete redesign, we can help
                   your team realize its potential.
                 </Typography>
-                <Stack spacing={2} direction="row" sx={{ mt: 2 }}>
+                <Stack spacing={2} direction="row" sx={{ mt: 2, zIndex: 2, position: 'relative' }}>
                   <Button
                     variant="contained"
                     color="electric-orange"
@@ -264,8 +276,9 @@ export default function BottomBanner() {
             </Grid>
             <Box sx={creditsContainerStyles}>
               <Typography variant="small-text" sx={creditsTextStyles}>
-                Credits: Name, Name, Name, Name, Name, Name, Name, Name, Name,
-                Name, Name, Name, Name, Name, Name
+                Credits: Adam Erickson, Ashley Hitson, Hector Lopez, Joanna Cendrowski, Katy Fernández, 
+                Kelvin Cheng, Laura Johnson, Mari Núñez, Mike Goulding, Randy Dean West, Roberto Hernández, 
+                Sebastianna Skalisky, Mike Zarafonetis.
               </Typography>
               <IconButton
                 size="large"

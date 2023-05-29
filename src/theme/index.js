@@ -96,6 +96,12 @@ const theme = createTheme({
       textTransform: 'none',
     }
   },
+  transitions: {
+    duration: {
+      enteringScreen: 550,
+      leavingScreen: 550,
+    }
+  },
 });
 
 export default theme;
