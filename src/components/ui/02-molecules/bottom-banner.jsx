@@ -110,12 +110,12 @@ export default function BottomBanner() {
 
   const patternWrapperStyles = {
     width: "100%",
+    height: ["571px", "571px", "660px"],
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
     zIndex: 1,
-    height: ["571px", "571px", "660px"],
   };
 
   const creditsContainerStyles = {
