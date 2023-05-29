@@ -15,6 +15,7 @@ import {
 import BackgroundPattern from "../01-atoms/background-pattern";
 import LogoIcon from "../../../img/4k-logo.svg";
 import CloseIcon from "../../../img/icons/close.svg";
+import SmallLogoIcon from "../../../img/small-logo.svg";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -66,13 +67,13 @@ export default function BottomBanner() {
 
     "& .MuiDialog-container.MuiDialog-scrollBody.css-iz3z40-MuiDialog-container::before": {
       content: '""',
-      backgroundColor: 'pacific-white.main',
-      display: ['block', null, 'none'],
-      position: 'absolute',
+      backgroundColor: "pacific-white.main",
+      display: ["block", null, "none"],
+      position: "absolute",
       top: 0,
       right: 0,
-      width: '90%',
-      height: '100px',
+      width: "90%",
+      height: "100px",
       zIndex: 2,
     }
   };
@@ -97,7 +98,7 @@ export default function BottomBanner() {
   };
 
   const gridStyles = {
-    p: "2.188rem 0",
+    p: ["89px 0", null, "2.188rem 0"],
     backgroundColor: "pacific-white.main",
     position: "relative",
     ml: 0,
@@ -107,7 +108,7 @@ export default function BottomBanner() {
 
   const patternWrapperStyles = {
     width: "100%",
-    height: "660px",
+    height: ["571px", null, "660px"],
     position: "absolute",
     bottom: 0,
     left: 0,
@@ -140,19 +141,26 @@ export default function BottomBanner() {
   };
 
   const closeIconButtonStyles = {
-    position: 'absolute',
-    top: 0,
-    right: ['80%', null, '40px'],
+    position: "absolute",
+    top: ["10px", null, 0],
+    right: ["80%", "82%", "40px"],
     
-    '&:hover, &:focus': {
-      backgroundColor: 'transparent',
+    "&:hover, &:focus": {
+      backgroundColor: "transparent",
 
-      '& svg': {
-        '& path': {
-          fill: (theme) => theme.palette['sunset-orange'].main,
+      "& svg": {
+        "& path": {
+          fill: (theme) => theme.palette["sunset-orange"].main,
         },
       },
     },
+  };
+
+  const smallLogoIconButtonStyles = {
+    display: ["block", null, "none"],
+    position: "absolute",
+    top: 0,
+    right:"24px",
   };
 
   const buttonStyles = {
@@ -274,6 +282,12 @@ export default function BottomBanner() {
               onClick={handleClose}
             >
               <CloseIcon />
+            </IconButton>
+            <IconButton
+              size="large"
+              sx={smallLogoIconButtonStyles}
+            >
+              <SmallLogoIcon />
             </IconButton>
           </Box>
         </DialogContent>
