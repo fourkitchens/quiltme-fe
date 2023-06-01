@@ -8,7 +8,6 @@ import {
   Stack,
   Dialog,
   DialogContent,
-  Drawer,
   Slide,
   ButtonBase,
   IconButton,
@@ -96,7 +95,7 @@ export default function BottomBanner() {
   };
 
   const gridStyles = {
-    p: ["89px 0", null, "2.188rem 0"],
+    p: ["89px 0 44px 0", null, "2.188rem 0"],
     backgroundColor: "pacific-white.main",
     position: "relative",
     ml: 0,
@@ -177,11 +176,11 @@ export default function BottomBanner() {
         content: '""',
         border: "2px dashed #F8B722",
         borderRadius: "4px",
-        width: "153px",
+        width: ["140px", "140px", "153px"],
         height: "55px",
         position: "absolute",
-        right: "-12px",
-        top: "12px",
+        left: ["15px", "15px", "15px"],
+        top: ["12px", "12px", "16px"],
         zIndex: -1,
       },
     },
