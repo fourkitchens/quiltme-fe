@@ -106,14 +106,14 @@ export default function BottomBanner() {
     position: "relative",
     ml: 0,
     width: ["90%", "90%", "100%"],
-    height: "100%",
+    height: ["auto", "auto", "100%"],
     alignSelf: ["flex-end", "flex-end", "none"],
   };
 
   const patternWrapperStyles = {
     width: "100%",
     height: ["571px", "571px", "660px"],
-    position: "absolute",
+    position: ["fixed", "fixed", "absolute"],
     bottom: 0,
     left: 0,
     right: 0,
@@ -200,19 +200,22 @@ export default function BottomBanner() {
   };
 
   const gridItemStyles = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     pr: ["24px", "24px", 0],
+    pl: ["24px", "24px", 0],
+    pt: 0,
   };
 
   const gridImageStyles = {
     display: "block",
     position: "relative",
-    pl: 0,
-    pt: 0,
     maxWidth: ["100%", "100%", "40% !important"],
 
     "& div": {
-      width: ["255px", "322.67px", "100%"],
-      height: ["155px", "235.52px", "100%"],
+      width: "100%",
+      height: "100%",
       m: "0 auto",
     },
 
