@@ -8,6 +8,7 @@ import {
   Stack,
   Dialog,
   DialogContent,
+  Drawer,
   Slide,
   ButtonBase,
   IconButton,
@@ -45,29 +46,25 @@ export default function BottomBanner() {
   };
 
   const mainContainerStyles = {
-    "& .css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop": {
+    "& .MuiModal-backdrop": {
       backgroundColor: "sunset-orange.main",
       opacity: "0.8 !important",
     },
 
-    "& .css-1t1j96h-MuiPaper-root-MuiDialog-paper": {
+    "& .MuiPaper-root-MuiDialog-paper": {
       m: 0,
       bottom: 0,
       maxWidth: "100%",
     },
 
-    "& .css-2zwj5t-MuiPaper-root-MuiDialog-paper": {
+    "& .MuiPaper-root.MuiDialog-paper.MuiDialog-paperScrollBody": {
       maxWidth: "100%",
       m: 0,
       backgroundColor: "transparent",
       verticalAlign: "bottom",
     },
 
-    "& .css-2zwj5t-MuiPaper-root-MuiDialog-paper.MuiDialog-paperScrollBody": {
-      maxWidth: "100%",
-    },
-
-    "& .MuiDialog-container.MuiDialog-scrollBody.css-iz3z40-MuiDialog-container::before": {
+    "& .MuiDialog-container.MuiDialog-scrollBody.MuiDialog-container::before": {
       content: '""',
       backgroundColor: "pacific-white.main",
       display: ["block", null, "none"],
@@ -277,7 +274,7 @@ export default function BottomBanner() {
             <Box sx={creditsContainerStyles}>
               <Typography variant="small-text" sx={creditsTextStyles}>
                 Credits: Adam Erickson, Ashley Hitson, Hector Lopez, Joanna Cendrowski, Katy Fernández, 
-                Kelvin Cheng, Laura Johnson, Mari Núñez, Mike Goulding, Randy Dean West, Roberto Hernández, 
+                Kelvin Cheng, Laura Johnson, Mari Núñez, Mike Goulding, Randy Dean Oest, Roberto Hernández, 
                 Sebastianna Skalisky, Mike Zarafonetis.
               </Typography>
               <IconButton
