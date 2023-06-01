@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import {useState, forwardRef } from "react";
+import { useState, forwardRef } from "react";
 import {
   Box,
   Grid,
@@ -20,12 +20,18 @@ import Logo from "./logo";
 import Team from "../../../img/4k-team.svg";
 
 const Transition = forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} easing={{ enter: 'ease-out', exit: 'ease-out' }} />;
+  return (
+    <Slide
+      direction="up"
+      ref={ref}
+      {...props}
+      easing={{ enter: "ease-out", exit: "ease-out" }}
+    />
+  );
 });
 
 export default function BottomBanner() {
   const [open, setOpen] = useState(false);
-  const scroll = "body";
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -73,7 +79,7 @@ export default function BottomBanner() {
       width: "90%",
       height: "100px",
       zIndex: 2,
-    }
+    },
   };
 
   const dialogContentStyles = {
@@ -126,12 +132,12 @@ export default function BottomBanner() {
 
   const creditsTextStyles = {
     mb: 0,
-    maxWidth: ['100%', '100%', "555px"],
+    maxWidth: ["100%", "100%", "555px"],
     order: [1, null, 0],
   };
 
   const iconButtonStyles = {
-    width: ["279px", '279px', "326px"],
+    width: ["279px", "279px", "326px"],
     height: ["37px"],
     p: 0,
     order: [0, null, 1],
@@ -147,9 +153,11 @@ export default function BottomBanner() {
 
   const closeIconButtonStyles = {
     position: "absolute",
-    top: ["15px", '20px', 0],
-    right: ["75%", "82%", "40px"],
-    
+    top: ["15px", "20px", 0],
+    left: ["15%", "15%", "unset"],
+    right: [null, null, "40px"],
+    zIndex: 999,
+
     "&:hover, &:focus": {
       backgroundColor: "transparent",
 
@@ -164,8 +172,13 @@ export default function BottomBanner() {
   const smallLogoIconButtonStyles = {
     display: ["block", null, "none"],
     position: "absolute",
-    top: '15px',
-    right:"24px",
+    top: "15px",
+    right: "24px",
+    zIndex: 999,
+
+    "&:hover, &:focus": {
+      backgroundColor: "transparent",
+    },
   };
 
   const buttonStyles = {
@@ -195,12 +208,12 @@ export default function BottomBanner() {
     position: "relative",
     pl: 0,
     pt: 0,
-    maxWidth: ["100%", '100%', "40% !important"],
-    
-    '& div': {
-      width: ["255px", "322.67px", "100%",],
+    maxWidth: ["100%", "100%", "40% !important"],
+
+    "& div": {
+      width: ["255px", "322.67px", "100%"],
       height: ["155px", "235.52px", "100%"],
-      m: '0 auto',
+      m: "0 auto",
     },
 
     "& svg": {
@@ -221,7 +234,7 @@ export default function BottomBanner() {
       <Dialog
         open={open}
         TransitionComponent={Transition}
-        scroll={scroll}
+        scroll="body"
         onClose={handleClose}
         aria-describedby="bottom-banner-dialog"
         sx={mainContainerStyles}
@@ -231,6 +244,16 @@ export default function BottomBanner() {
             <BackgroundPattern />
           </Stack>
           <Box sx={containerStyles}>
+            <IconButton
+              size="small"
+              sx={closeIconButtonStyles}
+              onClick={handleClose}
+            >
+              <CloseIcon />
+            </IconButton>
+            <IconButton size="large" sx={smallLogoIconButtonStyles}>
+              <SmallLogoIcon />
+            </IconButton>
             <Grid container spacing={3} sx={gridStyles}>
               <Grid
                 item
@@ -258,7 +281,11 @@ export default function BottomBanner() {
                   looking for extra hands or a complete redesign, we can help
                   your team realize its potential.
                 </Typography>
-                <Stack spacing={2} direction="row" sx={{ mt: 2, zIndex: 2, position: 'relative' }}>
+                <Stack
+                  spacing={2}
+                  direction="row"
+                  sx={{ mt: 2, zIndex: 2, position: "relative" }}
+                >
                   <Button
                     variant="contained"
                     color="electric-orange"
@@ -272,8 +299,9 @@ export default function BottomBanner() {
             </Grid>
             <Box sx={creditsContainerStyles}>
               <Typography variant="small-text" sx={creditsTextStyles}>
-                Credits: Adam Erickson, Ashley Hitson, Hector Lopez, Joanna Cendrowski, Katy Fernández, 
-                Kelvin Cheng, Laura Johnson, Mari Núñez, Mike Goulding, Randy Dean Oest, Roberto Hernández, 
+                Credits: Adam Erickson, Ashley Hitson, Hector Lopez, Joanna
+                Cendrowski, Katy Fernández, Kelvin Cheng, Laura Johnson, Mari
+                Núñez, Mike Goulding, Randy Dean Oest, Roberto Hernández,
                 Sebastianna Skalisky, Mike Zarafonetis.
               </Typography>
               <IconButton
@@ -285,19 +313,6 @@ export default function BottomBanner() {
                 <LogoIcon />
               </IconButton>
             </Box>
-            <IconButton
-              size="small"
-              sx={closeIconButtonStyles}
-              onClick={handleClose}
-            >
-              <CloseIcon />
-            </IconButton>
-            <IconButton
-              size="large"
-              sx={smallLogoIconButtonStyles}
-            >
-              <SmallLogoIcon />
-            </IconButton>
           </Box>
         </DialogContent>
       </Dialog>
