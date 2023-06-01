@@ -172,7 +172,7 @@ export default function BottomBanner() {
   const smallLogoIconButtonStyles = {
     display: ["block", null, "none"],
     position: "absolute",
-    top: "15px",
+    top: 0,
     right: "24px",
     zIndex: 999,
 
@@ -203,9 +203,9 @@ export default function BottomBanner() {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    pr: ["24px", "24px", 0],
-    pl: ["24px", "24px", 0],
-    pt: 0,
+    pr: ["24px", "24px", "0 !important"],
+    pl: ["24px", "24px", "0 !important"],
+    pt: "0 !important",
   };
 
   const gridImageStyles = {
@@ -262,7 +262,7 @@ export default function BottomBanner() {
                 item
                 xs={12}
                 md={6}
-                sx={{ ...gridImageStyles, gridItemStyles }}
+                sx={{ ...gridImageStyles, ...gridItemStyles }}
               >
                 <Logo>
                   <Team />
