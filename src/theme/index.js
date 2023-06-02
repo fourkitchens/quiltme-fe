@@ -35,6 +35,7 @@ const theme = createTheme({
       contrastText: '#1C1C1C',
     },
     'magic-blue': {
+      light: 'rgba(0, 122, 184, 0.7)',
       main: '#007AB8',
       contrastText: '#1C1C1C',
     },

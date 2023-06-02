@@ -48,6 +48,7 @@ export default function BottomBanner() {
     paddingRight: "47px",
     alignItems: "center",
     justifyContent: "flex-end",
+    bgcolor: 'sunset-orange.main',
   };
 
   const mainContainerStyles = {
