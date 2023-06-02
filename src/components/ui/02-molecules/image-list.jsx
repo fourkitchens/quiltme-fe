@@ -1,7 +1,5 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
-import Stack from "@mui/material/Stack";
 import LightGallery from "lightgallery/react";
 
 // Lightgallery.
@@ -11,14 +9,12 @@ import "../../../styles/lg-overrides.css";
 export default function ImageList({ onInit, setIndex }) {
   const wrapperStyles = {
     ".lg-react-element": {
-      m: "-1vw",
       flexWrap: "wrap",
-      overflow: "hidden",
+      overflow: "visible",
       display: "inline-flex",
-      transformOrigin: "left top",
+      transform: "rotate(-0.5deg)",
       backfaceVisibility: "hidden",
-      width: { xs: "120vw", md: "140rem" },
-      transform: "scale(1.2) rotate(-1deg) translate(-1%)",
+      width: { xs: "120vw", md: "175vw" },
     },
   };
 
@@ -28,7 +24,7 @@ export default function ImageList({ onInit, setIndex }) {
     position: "relative",
     aspectRatio: "1 / 1",
     display: "inline-flex",
-    width: { xs: "40vw",  md: "20rem" },
+    width: { xs: "40vw", md: "25vw" },
     "&:before": {
       content: "''",
       opacity: 0.3,
@@ -57,7 +53,7 @@ export default function ImageList({ onInit, setIndex }) {
   };
 
   return (
-    <Stack sx={wrapperStyles}>
+    <Box sx={wrapperStyles}>
       <LightGallery onInit={onInit} counter={false} download={false}>
         {itemData.map((item, index) => (
           <Link
@@ -78,7 +74,7 @@ export default function ImageList({ onInit, setIndex }) {
           </Link>
         ))}
       </LightGallery>
-    </Stack>
+    </Box>
   );
 }
 

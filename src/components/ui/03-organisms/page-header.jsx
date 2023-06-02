@@ -8,7 +8,9 @@ export default function PageHeader() {
     display: 'flex',
     width: 'max-content',
     justifyContent: 'flex-end',
+    pointerEvents: "none",
     position: 'fixed',
+    zIndex: 502,
     right: 0,
     top: 0,
     "& svg": {
