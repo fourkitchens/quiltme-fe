@@ -13,17 +13,21 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
+    "css-loader": "^6.8.1",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "lightgallery": "^2.7.1",
     "next": "13.3.0",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "yarn": "^1.22.19"
+    "style-loader": "^3.3.3"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",
     "@types/node": "18.15.11",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.3.1",
     "typescript": "5.0.4"
   }
 }
