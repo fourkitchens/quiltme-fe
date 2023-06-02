@@ -15,6 +15,7 @@ export default function PageLayoutWrapper({ children }) {
   const bodyStyles = {
     flex: 1,
     overflow: 'auto',
+    bgcolor: "magic-blue.main"
   };
   
   return (
