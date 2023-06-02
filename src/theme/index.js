@@ -93,6 +93,13 @@ const theme = createTheme({
       fontFamily: fontAlbertSans,
       fontSize: 'clamp(1.25rem, 1.1666666666666667rem + 0.4166666666666667vw, 1.5rem)',
       fontWeight: 800,
+      textTransform: 'none',
+    }
+  },
+  transitions: {
+    duration: {
+      enteringScreen: 550,
+      leavingScreen: 550,
     }
   },
 });

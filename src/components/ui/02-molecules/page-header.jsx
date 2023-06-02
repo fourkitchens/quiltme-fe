@@ -1,5 +1,6 @@
 import Logo from './logo';
 import Box from '@mui/material/Box';
+import LogoIcon from "../../../img/logo.svg";
 
 export default function PageHeader() {
   const wrapperStyles = {
@@ -14,7 +15,9 @@ export default function PageHeader() {
   return (
     <header>
       <Box sx={wrapperStyles}>
-        <Logo />
+        <Logo>
+          <LogoIcon />
+        </Logo>
       </Box>
     </header>
   );
