@@ -17,7 +17,7 @@ export default function ImageList({ onInit, setIndex }) {
       display: "inline-flex",
       transformOrigin: "left top",
       backfaceVisibility: "hidden",
-      width: { xs: "30rem", lg: "140rem" },
+      width: { xs: "120vw", md: "140rem" },
       transform: "scale(1.2) rotate(-1deg) translate(-1%)",
     },
   };
@@ -28,7 +28,7 @@ export default function ImageList({ onInit, setIndex }) {
     position: "relative",
     aspectRatio: "1 / 1",
     display: "inline-flex",
-    width: { xs: "10rem",  lg: "20rem" },
+    width: { xs: "40vw",  md: "20rem" },
     "&:before": {
       content: "''",
       opacity: 0.3,

@@ -12,7 +12,7 @@ import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOu
 
 export default function ImageControls({ instance, setIndex }) {
   const [isActive, setActive] = React.useState(false);
-  const isDesktop = useMediaQuery("(min-width: 56.56em)");
+  const isMobile = useMediaQuery("(max-width: 37.5em)");
 
   const controlStyles = {
     margin: 0,
@@ -49,7 +49,7 @@ export default function ImageControls({ instance, setIndex }) {
   const getNextIndex = (key) => {
     if (instance.current) {
       const { index, items } = instance.current;
-      const rows = isDesktop ? 7 : 3;
+      const rows = isMobile ? 3 : 7;
       const len = items.length;
 
       switch (key) {
