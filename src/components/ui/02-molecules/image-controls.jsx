@@ -31,11 +31,11 @@ export default function ImageControls({ instance, setIndex }) {
       opacity: 1,
       bgcolor: "white",
       "& svg": {
-        fill: "gray",
+        color: "cool-magenta.main",
       },
     },
     "& svg": {
-      fill: "white",
+      color: "white",
       width: "2.5rem",
       height: "2.5rem",
     },

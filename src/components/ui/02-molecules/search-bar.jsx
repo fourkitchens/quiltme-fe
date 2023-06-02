@@ -35,9 +35,9 @@ export default function SearchBar() {
       bgcolor: "gentle-yellow.main",
     },
     "& svg": {
-      fill: "white",
-      width: "2rem",
-      height: "2rem",
+      width: "2.2rem",
+      height: "2.2rem",
+      color: "nice-black.main",
     },
   };
 
