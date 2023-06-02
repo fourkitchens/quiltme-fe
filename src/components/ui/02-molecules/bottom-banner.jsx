@@ -16,7 +16,7 @@ import BackgroundPattern from "../01-atoms/background-pattern";
 import LogoIcon from "../../../img/4k-logo.svg";
 import CloseIcon from "../../../img/icons/close.svg";
 import SmallLogoIcon from "../../../img/small-logo.svg";
-import Logo from "./logo";
+import AnimatedSVG from "../01-atoms/animated-svg";
 import Team from "../../../img/4k-team.svg";
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -265,9 +265,9 @@ export default function BottomBanner() {
                 md={6}
                 sx={{ ...gridImageStyles, ...gridItemStyles }}
               >
-                <Logo>
+                <AnimatedSVG>
                   <Team />
-                </Logo>
+                </AnimatedSVG>
               </Grid>
               <Grid item xs={12} md={6} sx={gridItemStyles}>
                 <Typography

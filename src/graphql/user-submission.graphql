@@ -1,0 +1,26 @@
+createUserSubmission(
+  input: {
+    email: String,
+    image: String,
+    backgroundImage: String
+  }
+) {
+  errors
+  violations {
+    message
+    code
+    path
+  }
+  submission: entity {
+    ... on NodeUserSubmission {
+      nid
+      fieldUserEmail
+      fieldOriginalImage
+      fieldBackgroundImage
+      fieldProcessedImage1
+      fieldProcessedImage2
+      fieldProcessedImage3
+      fieldProcessedImage4
+    }
+  }
+}

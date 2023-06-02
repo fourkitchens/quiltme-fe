@@ -21,9 +21,9 @@ export default function PageLayoutWrapper({ children }) {
   return (
     <Container sx={containerStyles} maxWidth={false} disableGutters>
       <PageHeader />
-        <Box sx={bodyStyles}>
-          {children}
-        </Box>
+      <Box sx={bodyStyles}>
+        {children}
+      </Box>
       <PageFooter />
     </Container>
   );
