@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Box, Container } from '@mui/material';
+import Sidebar from '../ui/02-molecules/sidebar';
 import PageHeader from '../ui/03-organisms/page-header';
 import PageFooter from '../ui/03-organisms/page-footer';
-import Sidebar from '../ui/02-molecules/sidebar';
 
 export default function PageLayoutWrapper({ children }) {
   const containerStyles = {

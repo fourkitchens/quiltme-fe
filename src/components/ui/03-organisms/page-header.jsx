@@ -1,6 +1,6 @@
-import Logo from '../02-molecules/logo';
-import LogoIcon from '../../../img/logo.svg';
+import LogoIcon from "../../../img/logo.svg";
 import Container from '@mui/material/Container';
+import AnimatedSVG from '../01-atoms/animated-svg';
 
 export default function PageHeader() {
   const wrapperStyles = {
@@ -15,16 +15,16 @@ export default function PageHeader() {
     right: 0,
     top: 0,
     "& svg": {
-      width: { xs: "12.5rem",  lg: "22.5rem" }
+      width: { xs: "12.5rem",  md: "22.5rem" }
     }
   };
 
   return (
     <header>
       <Container sx={wrapperStyles} disableGutters>
-        <Logo>
+        <AnimatedSVG>
           <LogoIcon />
-        </Logo>
+        </AnimatedSVG>
       </Container>
     </header>
   );
