@@ -10,7 +10,7 @@ const dash = keyframes`
   }
 `;
 
-export default function Logo({ children }) {
+export default function AnimatedSVG({ children }) {
   const wrapperStyles = {
     '& svg': {
       strokeDasharray: '9 16',
