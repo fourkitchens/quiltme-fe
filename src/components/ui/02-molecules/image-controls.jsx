@@ -128,7 +128,7 @@ export default function ImageControls({ instance, setIndex }) {
       </Box>
       <Box gridColumn={2}>
         <IconButton
-          data-label="bottom"
+          aria-label="bottom"
           onClick={handleClick}
           sx={iconButtonStyles}
         >
