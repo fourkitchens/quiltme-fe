@@ -1,4 +1,5 @@
 import Logo from '../02-molecules/logo';
+import LogoIcon from '../../../img/logo.svg';
 import Container from '@mui/material/Container';
 
 export default function PageHeader() {
@@ -21,7 +22,9 @@ export default function PageHeader() {
   return (
     <header>
       <Container sx={wrapperStyles} disableGutters>
-        <Logo />
+        <Logo>
+          <LogoIcon />
+        </Logo>
       </Container>
     </header>
   );
