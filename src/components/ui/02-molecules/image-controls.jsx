@@ -19,7 +19,7 @@ export default function ImageControls({ instance, setIndex }) {
     gap: "0.25rem",
     left: "1.5rem",
     display: "grid",
-    bottom: "6.5rem",
+    bottom: "8.5rem",
     position: "fixed",
     gridTemplateColumns: "repeat(3, 1fr)",
   };
