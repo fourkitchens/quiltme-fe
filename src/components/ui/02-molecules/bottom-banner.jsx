@@ -261,7 +261,7 @@ export default function BottomBanner() {
                   your team realize its potential.
                 </Typography>
                 <Button href="https://www.fourkitchens.com/contact/">
-                  Let's Talk
+                  Let’s Talk
                 </Button>
               </Grid>
             </Grid>

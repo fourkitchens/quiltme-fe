@@ -119,7 +119,7 @@ export default function BottomBanner() {
   return (
     <>
       <FullButton sx={fullButtonStyles} onClick={handleClickOpen}>
-        What's the stitch?
+        What’s the stitch?
       </FullButton>
       <Dialog
         open={open}
@@ -153,7 +153,7 @@ export default function BottomBanner() {
             </Typography>
             <Typography variant="default-text" gutterBottom>
               We created Quilt.me to demonstrate the power and potential of
-              Drupal by exploring what's possible in this new world of AI.
+              Drupal by exploring what’s possible in this new world of AI.
               Rethinking how we approach image creation, we combined code, art
               direction, and AI to turn portraits into quilted images.
             </Typography>
@@ -169,7 +169,7 @@ export default function BottomBanner() {
             <Typography variant="default-text" gutterBottom>
               Quilting is a transformative art that breathes fresh life into
               fabrics to create something vibrant and new. With its rich history
-              in Pennsylvania (the site of DrupalCon '23) and foundations in
+              in Pennsylvania (the site of DrupalCon ’23) and foundations in
               community and collaboration, it was the perfect source of
               inspiration.
             </Typography>
