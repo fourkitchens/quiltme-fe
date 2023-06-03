@@ -12,7 +12,7 @@ export default function ImageList({ onInit, setIndex }) {
       flexWrap: "wrap",
       overflow: "visible",
       display: "inline-flex",
-      transform: "rotate(-0.5deg)",
+      transform: "rotate(-1deg)",
       backfaceVisibility: "hidden",
       width: { xs: "120vw", md: "175vw" },
     },
