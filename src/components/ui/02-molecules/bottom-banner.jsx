@@ -4,12 +4,10 @@ import {
   Box,
   Grid,
   Typography,
-  Button,
   Stack,
   Dialog,
   DialogContent,
   Slide,
-  ButtonBase,
   IconButton,
 } from "@mui/material";
 import BackgroundPattern from "../01-atoms/background-pattern";
@@ -18,6 +16,8 @@ import CloseIcon from "../../../img/icons/close.svg";
 import SmallLogoIcon from "../../../img/small-logo.svg";
 import AnimatedSVG from "../01-atoms/animated-svg";
 import Team from "../../../img/4k-team.svg";
+import FullButton from "../01-atoms/full-button";
+import Button from "../01-atoms/button";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return (
@@ -42,19 +42,13 @@ export default function BottomBanner() {
   };
 
   // Styles
-  const bottomButtonStyles = {
-    flex: 1,
-    display: "flex",
-    paddingRight: "47px",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    bgcolor: 'sunset-orange.main',
+  const fullButtonStyles = {
+    bgcolor: "sunset-orange.main",
   };
 
   const mainContainerStyles = {
     "& .MuiModal-backdrop": {
-      backgroundColor: "sunset-orange.main",
-      opacity: "0.8 !important",
+      bgcolor: "sunset-orange.light",
     },
 
     "& .MuiPaper-root-MuiDialog-paper": {
@@ -157,7 +151,7 @@ export default function BottomBanner() {
     top: ["15px", "20px", 0],
     left: ["15%", "15%", "unset"],
     right: [null, null, "40px"],
-    zIndex: 999,
+    zIndex: 500,
 
     "&:hover, &:focus": {
       backgroundColor: "transparent",
@@ -175,35 +169,17 @@ export default function BottomBanner() {
     position: "absolute",
     top: 0,
     right: "24px",
-    zIndex: 999,
+    zIndex: 500,
 
     "&:hover, &:focus": {
       backgroundColor: "transparent",
     },
   };
 
-  const buttonStyles = {
-    p: "10px 24px",
-
-    "&:hover, &:focus": {
-      "&:before": {
-        content: '""',
-        border: "2px dashed #F8B722",
-        borderRadius: "4px",
-        width: ["140px", "140px", "153px"],
-        height: "55px",
-        position: "absolute",
-        left: ["15px", "15px", "15px"],
-        top: ["12px", "12px", "16px"],
-        zIndex: -1,
-      },
-    },
-  };
-
   const gridItemStyles = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     pr: ["24px", "24px", "0 !important"],
     pl: ["24px", "24px", "0 !important"],
     pt: "0 !important",
@@ -230,11 +206,9 @@ export default function BottomBanner() {
 
   return (
     <>
-      <ButtonBase sx={bottomButtonStyles} onClick={handleClickOpen}>
-        <Typography variant="large-text" gutterBottom sx={{ mb: 0 }}>
-          Quilted by Four Kitchens
-        </Typography>
-      </ButtonBase>
+      <FullButton sx={fullButtonStyles} onClick={handleClickOpen}>
+        Quilted by Four Kitchens
+      </FullButton>
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -285,20 +259,9 @@ export default function BottomBanner() {
                   looking for extra hands or a complete redesign, we can help
                   your team realize its potential.
                 </Typography>
-                <Stack
-                  spacing={2}
-                  direction="row"
-                  sx={{ mt: 2, zIndex: 2, position: "relative" }}
-                >
-                  <Button
-                    variant="contained"
-                    color="electric-orange"
-                    href="https://www.fourkitchens.com/contact/"
-                    sx={buttonStyles}
-                  >
-                    Let’s Talk
-                  </Button>
-                </Stack>
+                <Button href="https://www.fourkitchens.com/contact/">
+                  Let's Talk
+                </Button>
               </Grid>
             </Grid>
             <Box sx={creditsContainerStyles}>
