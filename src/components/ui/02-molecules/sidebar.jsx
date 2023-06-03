@@ -1,31 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, forwardRef } from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  Button,
-  Stack,
-  Dialog,
-  DialogContent,
-  Slide,
-  ButtonBase,
-  IconButton,
-} from "@mui/material";
-import BackgroundPattern from "../01-atoms/background-pattern";
-import LogoIcon from "../../../img/4k-logo.svg";
-import CloseIcon from "../../../img/icons/close.svg";
+import Box from "@mui/material/Box";
+import Slide from "@mui/material/Slide";
+import Button from "../01-atoms/button";
+import Dialog from "@mui/material/Dialog";
+import FullButton from "../01-atoms/full-button";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import DialogContent from "@mui/material/DialogContent";
 import SmallLogoIcon from "../../../img/small-logo.svg";
-import Team from "../../../img/4k-team.svg";
-import Logo from "./logo";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return (
     <Slide
-      direction="up"
       ref={ref}
+      direction="left"
+      easing={{
+        exit: "ease-out",
+        enter: "ease-out",
+      }}
       {...props}
-      easing={{ enter: "ease-out", exit: "ease-out" }}
     />
   );
 });
@@ -42,285 +38,151 @@ export default function BottomBanner() {
   };
 
   // Styles
-  const bottomButtonStyles = {
-    flex: 1,
-    bottom: 0,
-    right: "5rem",
-    display: "flex",
+  const fullButtonStyles = {
+    top: 0,
+    pl: "3rem",
+    zIndex: "500",
     position: "fixed",
-    alignItems: "center",
-    paddingRight: "47px",
-    bgcolor: 'soft-pink.main',
-    justifyContent: "flex-end",
     transform: "rotate(270deg)",
     transformOrigin: "top right",
+    justifyContent: "flex-start",
+    right: {xs: "3.43rem", md: "5rem" },
+    width: {xs: "calc(100vh - 5rem)", md: "calc(100vh - 7rem)" },
   };
 
   const mainContainerStyles = {
     "& .MuiModal-backdrop": {
-      backgroundColor: "sunset-orange.main",
-      opacity: "0.8 !important",
+      bgcolor: "cool-magenta.light",
     },
-
+    "& .MuiDialog-container": {
+      display: "flex",
+      justifyContent: "flex-end",
+    },
     "& .MuiPaper-root-MuiDialog-paper": {
-      m: 0,
       bottom: 0,
       maxWidth: "100%",
     },
-
     "& .MuiPaper-root.MuiDialog-paper.MuiDialog-paperScrollBody": {
-      maxWidth: "100%",
       m: 0,
-      backgroundColor: "transparent",
+      borderRadius: 0,
+      maxWidth: "100%",
+      boxShadow: "none",
+      pt: { md: "5rem" },
+      bgcolor: "transparent",
       verticalAlign: "bottom",
     },
+  };
 
-    "& .MuiDialog-container.MuiDialog-scrollBody.MuiDialog-container::before": {
-      content: '""',
-      backgroundColor: "pacific-white.main",
-      display: ["block", null, "none"],
-      position: "absolute",
-      top: 0,
-      right: 0,
-      width: "90%",
-      height: "100px",
-      zIndex: 2,
-    },
+  const dialogHeaderStyles = {
+    p: 0,
+    width: "100%",
+    display: "flex",
+    flexWrap: "nowrap",
   };
 
   const dialogContentStyles = {
+    width: "95vw",
+    bgcolor: "white",
+    maxWidth: "50rem",
     position: "relative",
-    height: "660px",
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: ["flex-end", null, "center"],
-    p: 0,
-    pb: [0, null, "36px"],
+    p: { xs: "1.5rem", md: "5rem" },
+    pb: { xs: "2.5rem", md: "5rem" },
   };
 
-  const containerStyles = {
-    zIndex: 2,
-    position: "relative",
-    display: ["flex", "flex", "block"],
-    flexDirection: ["column", "column", "none"],
-    height: ["100%", "100%", "450px"],
-  };
-
-  const gridStyles = {
-    p: ["89px 0 44px 0", null, "2.188rem 0"],
-    backgroundColor: "pacific-white.main",
-    position: "relative",
-    ml: 0,
-    width: ["90%", "90%", "100%"],
-    height: ["auto", "auto", "100%"],
-    alignSelf: ["flex-end", "flex-end", "none"],
-  };
-
-  const patternWrapperStyles = {
-    width: "100%",
-    height: ["571px", "571px", "660px"],
-    position: ["fixed", "fixed", "absolute"],
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: 1,
-  };
-
-  const creditsContainerStyles = {
-    display: "flex",
-    flexDirection: ["column", "column", "row"],
-    justifyContent: "space-between",
-    backgroundColor: "gentle-yellow.main",
-    p: ["28px", "37px"],
-    m: [0, 0, "0 auto"],
-    width: "auto",
-  };
-
-  const creditsTextStyles = {
-    mb: 0,
-    maxWidth: ["100%", "100%", "555px"],
-    order: [1, null, 0],
-  };
-
-  const iconButtonStyles = {
-    width: ["279px", "279px", "326px"],
-    height: ["37px"],
-    p: 0,
-    order: [0, null, 1],
-    mb: ["26px", null, 0],
-
-    "& svg": {
-      display: "block",
-      position: "relative",
-      width: "auto",
-      height: "auto",
-    },
+  const subheadingStyles = {
+    mt: "2.5rem",
+    mb: "0.75rem",
   };
 
   const closeIconButtonStyles = {
-    position: "absolute",
-    top: ["15px", "20px", 0],
-    left: ["15%", "15%", "unset"],
-    right: [null, null, "40px"],
-    zIndex: 999,
-
+    p: "0.5rem",
+    color: "nice-black.main",
     "&:hover, &:focus": {
-      backgroundColor: "transparent",
-
-      "& svg": {
-        "& path": {
-          fill: (theme) => theme.palette["sunset-orange"].main,
-        },
-      },
+      color: "sunset-orange.main",
     },
-  };
-
-  const smallLogoIconButtonStyles = {
-    display: ["block", null, "none"],
-    position: "absolute",
-    top: 0,
-    right: "24px",
-    zIndex: 999,
-
-    "&:hover, &:focus": {
-      backgroundColor: "transparent",
-    },
-  };
-
-  const buttonStyles = {
-    p: "10px 24px",
-
-    "&:hover, &:focus": {
-      "&:before": {
-        content: '""',
-        border: "2px dashed #F8B722",
-        borderRadius: "4px",
-        width: ["140px", "140px", "153px"],
-        height: "55px",
-        position: "absolute",
-        left: ["15px", "15px", "15px"],
-        top: ["12px", "12px", "16px"],
-        zIndex: -1,
-      },
-    },
-  };
-
-  const gridItemStyles = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    pr: ["24px", "24px", "0 !important"],
-    pl: ["24px", "24px", "0 !important"],
-    pt: "0 !important",
-  };
-
-  const gridImageStyles = {
-    display: "block",
-    position: "relative",
-    maxWidth: ["100%", "100%", "40% !important"],
-
-    "& div": {
-      width: "100%",
-      height: "100%",
-      m: "0 auto",
-    },
-
     "& svg": {
-      display: "block",
-      position: "relative",
-      width: "auto",
-      height: "auto",
+      width: "2rem",
+      height: "2rem",
     },
+  };
+
+  const logoIconStyles = {
+    ml: "auto",
+    opacity: { xs: 1, md: 0 },
   };
 
   return (
     <>
-      <ButtonBase sx={bottomButtonStyles} onClick={handleClickOpen}>
-        <Typography variant="large-text" gutterBottom sx={{ mb: 0 }}>
-          What’s the stitch?
-        </Typography>
-      </ButtonBase>
+      <FullButton sx={fullButtonStyles} onClick={handleClickOpen}>
+        What's the stitch?
+      </FullButton>
       <Dialog
         open={open}
-        TransitionComponent={Transition}
         scroll="body"
         onClose={handleClose}
-        aria-describedby="bottom-banner-dialog"
         sx={mainContainerStyles}
+        TransitionComponent={Transition}
+        aria-describedby="bottom-banner-dialog"
       >
         <DialogContent sx={dialogContentStyles}>
-          <Stack sx={patternWrapperStyles}>
-            <BackgroundPattern />
-          </Stack>
-          <Box sx={containerStyles}>
-            <IconButton
-              size="small"
-              sx={closeIconButtonStyles}
-              onClick={handleClose}
-            >
-              <CloseIcon />
-            </IconButton>
-            <IconButton size="large" sx={smallLogoIconButtonStyles}>
-              <SmallLogoIcon />
-            </IconButton>
-            <Grid container spacing={3} sx={gridStyles}>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                sx={{ ...gridImageStyles, ...gridItemStyles }}
-              >
-                <Logo>
-                  <Team />
-                </Logo>
-              </Grid>
-              <Grid item xs={12} md={6} sx={gridItemStyles}>
-                <Typography
-                  variant="h2"
-                  gutterBottom
-                  sx={{ mb: 1 }}
-                  id="bottom-banner-dialog"
-                >
-                  Keeping pace with technology is hard work
-                </Typography>
-                <Typography variant="default-text" gutterBottom>
-                  Our experience in education, advocacy, and publishing informs
-                  our unique, content-focused approach to crafting websites that
-                  make an impact and stand the test of time. Whether you’re
-                  looking for extra hands or a complete redesign, we can help
-                  your team realize its potential.
-                </Typography>
-                <Stack
-                  spacing={2}
-                  direction="row"
-                  sx={{ mt: 2, zIndex: 2, position: "relative" }}
-                >
-                  <Button
-                    variant="contained"
-                    color="electric-orange"
-                    href="https://www.fourkitchens.com/contact/"
-                    sx={buttonStyles}
-                  >
-                    Let’s Talk
-                  </Button>
-                </Stack>
-              </Grid>
-            </Grid>
-            <Box sx={creditsContainerStyles}>
-              <Typography variant="small-text" sx={creditsTextStyles}>
-                Credits: Adam Erickson, Ashley Hitson, Hector Lopez, Joanna
-                Cendrowski, Katy Fernández, Kelvin Cheng, Laura Johnson, Mari
-                Núñez, Mike Goulding, Randy Dean Oest, Roberto Hernández,
-                Sebastianna Skalisky, Mike Zarafonetis.
-              </Typography>
+          <Box>
+            <Box sx={dialogHeaderStyles}>
               <IconButton
                 size="large"
-                aria-label="4k-logo"
-                sx={iconButtonStyles}
-                href="https://www.fourkitchens.com/"
+                onClick={handleClose}
+                sx={closeIconButtonStyles}
               >
-                <LogoIcon />
+                <CloseIcon />
               </IconButton>
+              <Box size="large" sx={logoIconStyles}>
+                <SmallLogoIcon />
+              </Box>
+            </Box>
+            <Typography
+              variant="h1"
+              gutterBottom
+              sx={{ mb: "1.5rem" }}
+              id="bottom-banner-dialog"
+            >
+              Crafting a community fabric with AI
+            </Typography>
+            <Typography variant="default-text" gutterBottom>
+              We created Quilt.me to demonstrate the power and potential of
+              Drupal by exploring what's possible in this new world of AI.
+              Rethinking how we approach image creation, we combined code, art
+              direction, and AI to turn portraits into quilted images.
+            </Typography>
+            <Typography variant="default-text" gutterBottom>
+              Teams can use our AI-powered Drupal integration to develop a
+              distinctive house style, apply art direction on the fly, and
+              create stunning and one-of-a-kind branded graphics that are
+              uniquely you.
+            </Typography>
+            <Typography variant="h2" gutterBottom sx={subheadingStyles}>
+              Why Quilts?
+            </Typography>
+            <Typography variant="default-text" gutterBottom>
+              Quilting is a transformative art that breathes fresh life into
+              fabrics to create something vibrant and new. With its rich history
+              in Pennsylvania (the site of DrupalCon '23) and foundations in
+              community and collaboration, it was the perfect source of
+              inspiration.
+            </Typography>
+            <Typography variant="h2" gutterBottom sx={subheadingStyles}>
+              Made with love by Four Kitchens
+            </Typography>
+            <Typography variant="default-text" gutterBottom>
+              The Web Chefs of Four Kitchens have a natural curiosity and a
+              passion for making cool stuff for the web. Want to do good in good
+              company? See what drives us and if our values match yours.
+            </Typography>
+            <Box sx={{ mt: "2.5rem", zIndex: 2, position: "relative" }}>
+              <Button
+                endIcon={<ArrowOutwardIcon />}
+                href="https://www.fourkitchens.com/contact/"
+              >
+                Meet the team
+              </Button>
             </Box>
           </Box>
         </DialogContent>

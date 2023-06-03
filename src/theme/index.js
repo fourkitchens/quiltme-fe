@@ -21,6 +21,7 @@ const theme = createTheme({
       contrastText: '#FFFFFF',
     },
     'cool-magenta': {
+      light: 'rgb(234, 11, 63, 0.7)',
       main: '#EA0B3F',
       contrastText: '#FFFFFF',
     },
@@ -69,6 +70,11 @@ const theme = createTheme({
     },
     h2: {
       fontSize: 'clamp(1.5625rem, 1.25rem + 1.5625vw, 2.5rem)',
+      fontWeight: 800,
+      lineHeight: '116%',
+    },
+    h3: {
+      fontSize: 'clamp(1.125rem, 0.8333rem + 1.4583vw, 2rem)',
       fontWeight: 800,
       lineHeight: '116%',
     },
