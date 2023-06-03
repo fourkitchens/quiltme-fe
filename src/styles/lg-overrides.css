@@ -3,6 +3,7 @@
   opacity: 0.8;
   transition: all 0.4s;
   background-color: transparent;
+  z-index: 9999;
 }
 
 .lg-container .lg-backdrop.in {
@@ -18,11 +19,12 @@
   opacity: 0;
   margin: auto;
   height: auto;
-  max-width: 31rem;
+  max-width: 40vw;
   background: white;
   aspect-ratio: 1 / 1;
   transition: all 0.4s;
   border: 0.5rem solid #F8B722;
+  z-index: 9999;
 }
 
 #lg-outer-2.lg-visible {

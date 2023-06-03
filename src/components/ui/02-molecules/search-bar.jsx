@@ -29,6 +29,7 @@ export default function SearchBar() {
   };
 
   const mainContainerStyles = {
+    zIndex: 9999,
     "& .MuiModal-backdrop": {
       bgcolor: "magic-blue.light",
     },

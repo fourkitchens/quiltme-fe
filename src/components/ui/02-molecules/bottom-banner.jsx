@@ -47,6 +47,7 @@ export default function BottomBanner() {
   };
 
   const mainContainerStyles = {
+    zIndex: 9999,
     "& .MuiModal-backdrop": {
       bgcolor: "sunset-orange.light",
     },
@@ -151,7 +152,7 @@ export default function BottomBanner() {
     top: ["15px", "20px", 0],
     left: ["15%", "15%", "unset"],
     right: [null, null, "40px"],
-    zIndex: 500,
+    zIndex: 9999,
 
     "&:hover, &:focus": {
       backgroundColor: "transparent",
@@ -169,7 +170,7 @@ export default function BottomBanner() {
     position: "absolute",
     top: 0,
     right: "24px",
-    zIndex: 500,
+    zIndex: 9999,
 
     "&:hover, &:focus": {
       backgroundColor: "transparent",

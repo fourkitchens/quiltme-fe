@@ -13,6 +13,7 @@ export default function ImageList({ onInit, setIndex }) {
       overflow: "visible",
       display: "inline-flex",
       transform: "rotate(-1deg)",
+      transformOrigin: "top left",
       backfaceVisibility: "hidden",
       width: { xs: "120vw", md: "175vw" },
     },

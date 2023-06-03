@@ -67,7 +67,7 @@ export default function BottomBanner() {
       borderRadius: 0,
       maxWidth: "100%",
       boxShadow: "none",
-      pt: { md: "5rem" },
+      pt: { md: "12rem" },
       bgcolor: "transparent",
       verticalAlign: "bottom",
     },
@@ -78,6 +78,9 @@ export default function BottomBanner() {
     width: "100%",
     display: "flex",
     flexWrap: "nowrap",
+    position: { md: "absolute" },
+    left: { md: "1.25rem" },
+    top: { md: "1.25rem" },
   };
 
   const dialogContentStyles = {
@@ -96,6 +99,8 @@ export default function BottomBanner() {
 
   const closeIconButtonStyles = {
     p: "0.5rem",
+    width: "2.81rem",
+    height: "2.81rem",
     color: "nice-black.main",
     "&:hover, &:focus": {
       color: "sunset-orange.main",
