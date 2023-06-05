@@ -1,10 +1,10 @@
 query {
   nodeQuery {
     entities {
-      entityType
       ... on NodeUserSubmission {
         title
-        fieldChosenImageUrl
+        entityId
+        image: fieldChosenImageUrl
       }
     }
   }

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '../lib/apolloClient';
 import { ThemeProvider } from '@mui/material/styles';
-
+import { SubmissionContextProvider } from '../context/submission';
 import PageLayoutWrapper from '../components/wrappers/page-layout-wrapper';
 import theme from '../theme';
 
@@ -15,9 +15,11 @@ export default function App({ Component, pageProps }) {
   return (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={theme}>
-        <PageLayoutWrapper locale={pageProps.locale}>
-          <Component {...pageProps} />
-        </PageLayoutWrapper>
+        <SubmissionContextProvider>
+          <PageLayoutWrapper>
+            <Component {...pageProps} />
+          </PageLayoutWrapper>
+        </SubmissionContextProvider>
       </ThemeProvider>
     </ApolloProvider>
   );

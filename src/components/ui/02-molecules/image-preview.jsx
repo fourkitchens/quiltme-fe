@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Dialog from "@mui/material/Dialog";
+import IconButton from "../01-atoms/icon-button";
 import DialogContent from "@mui/material/DialogContent";
+import SubmissionContext from "../../../context/submission";
 
 // Icons.
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowLeftIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
 import ArrowRightIcon from "@mui/icons-material/ArrowCircleRightOutlined";
-import IconButton from "../01-atoms/icon-button";
 
 export default function ImagePreview({ items, setSelected }) {
+  // Language context.
+  const submContext = useContext(SubmissionContext);
+
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -40,6 +44,7 @@ export default function ImagePreview({ items, setSelected }) {
   };
 
   const handleClose = () => {
+    submContext.setData(null);
     setSelected(-1);
     setData(null);
   };
@@ -77,9 +82,9 @@ export default function ImagePreview({ items, setSelected }) {
   };
 
   const closeButtonStyles = {
-    top: "1.5rem",
-    right: "1.5rem",
     position: "absolute",
+    top: { xs: "0.65rem", md: "1.5rem" },
+    right: { xs: "0.65rem", md: "1.5rem" },
   };
 
   return (
@@ -108,7 +113,7 @@ export default function ImagePreview({ items, setSelected }) {
             loading="lazy"
             component="img"
             sx={imageStyles}
-            src={data.img}
+            src={data.image}
             alt={data.title}
           />
         </DialogContent>

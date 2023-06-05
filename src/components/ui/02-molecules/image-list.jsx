@@ -57,8 +57,8 @@ export default function ImageList({ items, setSelected }) {
               component="img"
               sx={imageStyles}
               alt={item.title}
-              src={`${item.img}?w=800&fit=crop&auto=format`}
-              srcSet={`${item.img}?w=800&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.image}?w=800&fit=crop&auto=format`}
+              srcSet={`${item.image}?w=800&fit=crop&auto=format&dpr=2 2x`}
             />
           </ButtonBase>
         </ImageListItem>
