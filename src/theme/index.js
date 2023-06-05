@@ -49,6 +49,7 @@ const theme = createTheme({
       contrastText: '#1C1C1C',
     },
     'nice-black': {
+      light: 'rgba(28, 28, 28, 0.1)',
       main: '#1C1C1C',
       contrastText: '#FFFFFF',
     },
