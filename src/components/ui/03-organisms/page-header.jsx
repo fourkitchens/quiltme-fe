@@ -5,7 +5,6 @@ import AnimatedSVG from '../01-atoms/animated-svg';
 export default function PageHeader() {
   const wrapperStyles = {
     flex: 1,
-    zIndex: 2,
     display: 'flex',
     width: 'max-content',
     justifyContent: 'flex-end',

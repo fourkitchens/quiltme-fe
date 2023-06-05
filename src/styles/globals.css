@@ -8,5 +8,5 @@ body {
 }
 
 *:focus-visible {
-  outline: 3px dashed #E32002;
+  outline: 2px dashed #E32002;
 }

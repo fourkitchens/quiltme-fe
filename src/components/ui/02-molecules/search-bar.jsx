@@ -1,36 +1,60 @@
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Tooltip from "@mui/material/Tooltip";
+import Dialog from "@mui/material/Dialog";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { Close, ImageSearch } from "@mui/icons-material";
-import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
+import DialogContent from "@mui/material/DialogContent";
+
+// Icons
+import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/ImageSearch";
+import ArrowIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function SearchBar() {
-  const [isActive, setActive] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(!open);
+  };
+
+  // Styles
   const wrapperStyles = {
-    zIndex: 501,
+    zIndex: 502,
     display: "flex",
   };
 
-  const overlayStyles = {
-    top: "0",
-    left: "0",
-    width: "100vw",
-    height: "100vh",
-    display: "flex",
-    position: "absolute",
-    bgcolor: "magic-blue.light",
+  const mainContainerStyles = {
+    zIndex: 9999,
+    "& .MuiModal-backdrop": {
+      bgcolor: "magic-blue.light",
+    },
+    "& .MuiDialog-paper": {
+      margin: 0,
+      overflow: "visible",
+    },
+    "& .MuiDialog-container": {
+      height: "auto",
+      position: "absolute",
+      right: {xs: 0, md: "5rem" },
+      bottom: {xs: "3.43rem", md: "5rem" },
+    },
+    "& .close-button": {
+      position: "absolute",
+      right: {xs: 0, md: "-5rem" },
+      bottom: {xs: "-3.43rem", md: "-5rem" }
+    }
   };
 
   const iconButtonStyles = {
-    width: "5rem",
-    height: "5rem",
     borderRadius: 0,
     bgcolor: "gentle-yellow.main",
+    width: {xs: "3.43rem", md: "5rem" },
+    height: {xs: "3.43rem", md: "5rem" },
     "&:hover": {
       bgcolor: "gentle-yellow.main",
     },
@@ -45,11 +69,9 @@ export default function SearchBar() {
     bottom: "5rem",
     display: "flex",
     p: "1.25rem 2rem",
-    position: "absolute",
-    right: { md: "5rem" },
     minWidth: { md: "31rem" },
     flexFlow: "column nowrap",
-    width: { xs: "100%", md: "initial" },
+    width: { xs: "100vw", md: "initial" },
     borderColor: "gentle-yellow.main",
     borderWidth: "0.25rem",
     borderStyle: "solid",
@@ -78,46 +100,47 @@ export default function SearchBar() {
     "svg": { fill: "white" },
   };
 
-  const toggleState = () => {
-    setActive(!isActive);
-  };
+  const renderedButton = (
+    <IconButton
+      size="large"
+      aria-label="search"
+      sx={iconButtonStyles}
+      onClick={handleClickOpen}
+      className="close-button"
+    >
+      {open ? <CloseIcon /> : <SearchIcon />}
+    </IconButton>
+  );
 
   return (
     <Box sx={wrapperStyles}>
-      {isActive && (
-        <Box sx={overlayStyles}>
-          <Paper component="form" sx={formStyles}>
-            <Typography ml={1} variant="default-text" gutterBottom>
-              Search for an image
-            </Typography>
-            <Box sx={inputWrapperStyles}>
-              <InputBase
-                sx={inputStyles}
-                inputProps={{ "aria-label": "search user" }}
-              />
-              <IconButton sx={submitStyles} aria-label="menu">
-                <ArrowForwardIos />
-              </IconButton>
-            </Box>
-            <Typography ml={1} variant="small-text" gutterBottom>
-              Search by name, Drupal handle, or email address.
-            </Typography>
-          </Paper>
-        </Box>
-      )}
-      <Tooltip
-        placement="top-start"
-        title={isActive ? "close search" : "open search"}
+      {renderedButton}
+      <Dialog
+        open={open}
+        scroll="paper"
+        onClose={handleClose}
+        sx={mainContainerStyles}
+        aria-describedby="search-box-heading"
       >
-        <IconButton
-          size="large"
-          aria-label="search"
-          sx={iconButtonStyles}
-          onClick={toggleState}
-        >
-          {isActive ? <Close /> : <ImageSearch />}
-        </IconButton>
-      </Tooltip>
+        <DialogContent sx={formStyles}>
+          {renderedButton}
+          <Typography id="search-box-heading" ml={1} variant="default-text" gutterBottom>
+            Search for an image
+          </Typography>
+          <Box sx={inputWrapperStyles}>
+            <InputBase
+              sx={inputStyles}
+              inputProps={{ "aria-label": "search user" }}
+            />
+            <IconButton sx={submitStyles} aria-label="menu">
+              <ArrowIcon />
+            </IconButton>
+          </Box>
+          <Typography ml={1} variant="small-text" gutterBottom>
+            Search by name, Drupal handle, or email address.
+          </Typography>
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 }

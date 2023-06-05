@@ -1,19 +1,59 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import useMediaQuery from "../../../hooks/use-media-query";
+import IconButton from "../01-atoms/icon-button";
+import useImageGridColumns from "../../../hooks/use-image-grid-columns";
 
 // Icons.
-import PreviewIcon from "@mui/icons-material/Preview";
-import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
-import ArrowCircleDownOutlinedIcon from "@mui/icons-material/ArrowCircleDownOutlined";
-import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
-import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
+import PreviewIcon from '@mui/icons-material/CenterFocusWeak';
+import ArrowUpIcon from "@mui/icons-material/ArrowCircleUpOutlined";
+import ArrowDownIcon from "@mui/icons-material/ArrowCircleDownOutlined";
+import ArrowLeftIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
+import ArrowRightIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 
-export default function ImageControls({ instance, setIndex }) {
-  const [isActive, setActive] = React.useState(false);
-  const isMobile = useMediaQuery("(max-width: 37.5em)");
+export default function ImageControls({ items, setFocus, setSelected }) {
+  const cols = useImageGridColumns();
+  const [focus, saveFocus] = useState(null);
 
+  useEffect(() => {
+    if (items) {
+      const results = items.filter((item) => item.focus);
+      if (results?.length) {
+        saveFocus(results[0]);
+      }
+    }
+  }, [items]);
+
+  const handleLeft = () => {
+    if (focus?.id > 0) {
+      setFocus(focus.id - 1);
+    }
+  };
+
+  const handleRigth = () => {
+    const currentId = focus ? focus.id : 0;
+    if (currentId < items?.length - 1) {
+      setFocus(currentId + 1);
+    }
+  };
+
+  const handleTop = () => {
+    if (focus?.id - cols >= 0) {
+      setFocus(focus.id - cols);
+    }
+  };
+
+  const handleBottom = () => {
+    const currentId = focus ? focus.id : 0;
+    if (currentId + cols < items.length) {
+      setFocus(currentId + cols);
+    }
+  };
+
+  const handlePreview = () => {
+    setSelected(focus.id);
+  };
+
+  // Styles.
   const controlStyles = {
     margin: 0,
     gap: "0.25rem",
@@ -24,115 +64,33 @@ export default function ImageControls({ instance, setIndex }) {
     gridTemplateColumns: "repeat(3, 1fr)",
   };
 
-  const iconButtonStyles = {
-    padding: 0,
-    transition: "all 0.4s",
-    "&:hover, &:focus-visible": {
-      opacity: 1,
-      bgcolor: "white",
-      "& svg": {
-        color: "cool-magenta.main",
-      },
-    },
-    "& svg": {
-      color: "white",
-      width: "2.5rem",
-      height: "2.5rem",
-    },
-  };
-
-  const previewButtonStyles = {
-    ...iconButtonStyles,
-    borderRadius: "0.25rem",
-  };
-
-  const getNextIndex = (key) => {
-    if (instance.current) {
-      const { index, items } = instance.current;
-      const rows = isMobile ? 3 : 7;
-      const len = items.length;
-
-      switch (key) {
-        case "left":
-          if (index > 0) return index - 1;
-          break;
-        case "right":
-          if (index < len - 1) return index + 1;
-          break;
-        case "top":
-          if (index - rows >= 0) return index - rows;
-          break;
-        case "bottom":
-          if (index + rows < len) return index + rows;
-          break;
-      }
-      return -1;
-    }
-  };
-
-  const openPreview = () => {
-    if (instance.current) {
-      const { index, items } = instance.current;
-      items[index].click();
-    }
-  };
-
-  const handleClick = (event) => {
-    if (instance.current) {
-      const key = event.currentTarget.getAttribute("aria-label");
-      const nextIndex = getNextIndex(key);
-      setIndex(nextIndex, true);
-      setActive(true);
-    }
-  };
-
   return (
     <Box sx={controlStyles} role="navigation" aria-label="gallery">
       <Box gridColumn={2}>
-        <IconButton
-          aria-label="top"
-          onClick={handleClick}
-          sx={iconButtonStyles}
-        >
-          <ArrowCircleUpOutlinedIcon />
+        <IconButton aria-label="top" onClick={handleTop}>
+          <ArrowUpIcon />
         </IconButton>
       </Box>
       <Box gridColumn={1}>
-        <IconButton
-          aria-label="left"
-          onClick={handleClick}
-          sx={iconButtonStyles}
-        >
-          <ArrowCircleLeftOutlinedIcon />
+        <IconButton aria-label="left" onClick={handleLeft}>
+          <ArrowLeftIcon />
         </IconButton>
       </Box>
-      {isActive && (
+      {focus && (
         <Box gridColumn={2}>
-          <IconButton
-            onClick={openPreview}
-            aria-label="preview"
-            sx={previewButtonStyles}
-          >
+          <IconButton aria-label="preview" onClick={handlePreview}>
             <PreviewIcon />
           </IconButton>
         </Box>
       )}
       <Box gridColumn={3}>
-        <IconButton
-          aria-label="right"
-          onClick={handleClick}
-          sx={iconButtonStyles}
-        >
-          <ArrowCircleRightOutlinedIcon />
+        <IconButton aria-label="right" onClick={handleRigth}>
+          <ArrowRightIcon />
         </IconButton>
       </Box>
       <Box gridColumn={2}>
-        <IconButton
-          aria-label="bottom"
-          onClick={handleClick}
-          sx={iconButtonStyles}
-        >
-          <ArrowCircleDownOutlinedIcon />
+        <IconButton aria-label="bottom" onClick={handleBottom}>
+          <ArrowDownIcon />
         </IconButton>
       </Box>
     </Box>
