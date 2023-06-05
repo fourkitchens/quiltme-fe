@@ -82,9 +82,9 @@ export default function ImagePreview({ items, setSelected }) {
   };
 
   const closeButtonStyles = {
-    top: "1.5rem",
-    right: "1.5rem",
     position: "absolute",
+    top: { xs: "0.65rem", md: "1.5rem" },
+    right: { xs: "0.65rem", md: "1.5rem" },
   };
 
   return (

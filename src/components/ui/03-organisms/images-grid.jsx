@@ -32,6 +32,7 @@ export default function ImagesGrid({ data }) {
     });
 
     setItems(newState);
+    setTimeout(() => submContext.setData(null));
   };
 
   const setFocus = (index) => {

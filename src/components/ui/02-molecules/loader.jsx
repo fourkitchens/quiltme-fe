@@ -21,7 +21,7 @@ export default function Loader() {
 
   return (
     <MuiImageList sx={listStyles} cols={cols} gap={0}>
-      {Array.from({ length: 10 }, (_, index) => (
+      {Array.from({ length: 30 }, (_, index) => (
         <ImageListItem key={index}>
           <Skeleton variant="rectangular" sx={itemStyles} />
         </ImageListItem>
