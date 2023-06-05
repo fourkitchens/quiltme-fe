@@ -202,6 +202,8 @@ export default function BottomBanner() {
       position: "relative",
       width: "auto",
       height: "auto",
+      margin: "0 auto",
+      maxHeight: "450px",
     },
   };
 
@@ -260,7 +262,10 @@ export default function BottomBanner() {
                   looking for extra hands or a complete redesign, we can help
                   your team realize its potential.
                 </Typography>
-                <Button href="https://www.fourkitchens.com/contact/">
+                <Button
+                  target="_blank"
+                  href="https://www.fourkitchens.com/contact/"
+                >
                   Let’s Talk
                 </Button>
               </Grid>

@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Box from "@mui/material/Box";
+import debounce from "lodash/debounce";
 import Dialog from "@mui/material/Dialog";
-import InputBase from "@mui/material/InputBase";
+import { useQuery } from "@apollo/client";
+import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import Autocomplete from "@mui/material/Autocomplete";
 import DialogContent from "@mui/material/DialogContent";
+import SubmissionContext from "../../../context/submission";
+import SearchUser from "../../../graphql/search-user.graphql";
 
 // Icons
 import CloseIcon from "@mui/icons-material/Close";
@@ -12,15 +17,38 @@ import SearchIcon from "@mui/icons-material/ImageSearch";
 import ArrowIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function SearchBar() {
-  const [open, setOpen] = useState(false);
+  // Language context.
+  const submContext = useContext(SubmissionContext);
 
-  const handleClose = () => {
+  const [open, setOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const { loading, data } = useQuery(SearchUser, {
+    variables: {
+      value: searchTerm,
+    },
+    onError() {
+      submContext.setData(null);
+    },
+  });
+
+  const handleClose = (clear = true) => {
     setOpen(false);
+    if (clear) submContext.setData(null);
   };
 
   const handleClickOpen = () => {
     setOpen(!open);
   };
+
+  const handleClickSubmit = () => {
+    if (data?.nodeQuery?.entities?.length) {
+      submContext.setData(data?.nodeQuery?.entities[0]);
+      handleClose(false);
+    }
+  };
+
+  const setSearchTermDebounced = debounce(setSearchTerm, 500);
 
   // Styles
   const wrapperStyles = {
@@ -40,21 +68,21 @@ export default function SearchBar() {
     "& .MuiDialog-container": {
       height: "auto",
       position: "absolute",
-      right: {xs: 0, md: "5rem" },
-      bottom: {xs: "3.43rem", md: "5rem" },
+      right: { xs: 0, md: "5rem" },
+      bottom: { xs: "3.43rem", md: "5rem" },
     },
     "& .close-button": {
       position: "absolute",
-      right: {xs: 0, md: "-5rem" },
-      bottom: {xs: "-3.43rem", md: "-5rem" }
-    }
+      right: { xs: 0, md: "-5rem" },
+      bottom: { xs: "-3.43rem", md: "-5rem" },
+    },
   };
 
   const iconButtonStyles = {
     borderRadius: 0,
     bgcolor: "gentle-yellow.main",
-    width: {xs: "3.43rem", md: "5rem" },
-    height: {xs: "3.43rem", md: "5rem" },
+    width: { xs: "3.43rem", md: "5rem" },
+    height: { xs: "3.43rem", md: "5rem" },
     "&:hover": {
       bgcolor: "gentle-yellow.main",
     },
@@ -88,16 +116,20 @@ export default function SearchBar() {
 
   const inputStyles = {
     flex: 1,
-    p: "0 1rem",
+    width: "100%",
     minHeight: "2.75rem",
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "none",
+    }
   };
 
   const submitStyles = {
     borderRadius: 0,
-    minHeight: "2.75rem",
+    height: "3.5rem",
+    aspectRatio: "1 / 1",
     bgcolor: "magic-blue.main",
     "&:hover": { bgcolor: "magic-blue.main" },
-    "svg": { fill: "white" },
+    svg: { fill: "white" },
   };
 
   const renderedButton = (
@@ -124,15 +156,33 @@ export default function SearchBar() {
       >
         <DialogContent sx={formStyles}>
           {renderedButton}
-          <Typography id="search-box-heading" ml={1} variant="default-text" gutterBottom>
+          <Typography
+            id="search-box-heading"
+            ml={1}
+            variant="default-text"
+            gutterBottom
+          >
             Search for an image
           </Typography>
           <Box sx={inputWrapperStyles}>
-            <InputBase
+            <Autocomplete
               sx={inputStyles}
-              inputProps={{ "aria-label": "search user" }}
+              loading={loading}
+              options={data?.nodeQuery?.entities || []}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  onChange={(e) => {
+                    setSearchTermDebounced(e.target.value);
+                  }}
+                />
+              )}
             />
-            <IconButton sx={submitStyles} aria-label="menu">
+            <IconButton
+              sx={submitStyles}
+              aria-label="search"
+              onClick={handleClickSubmit}
+            >
               <ArrowIcon />
             </IconButton>
           </Box>

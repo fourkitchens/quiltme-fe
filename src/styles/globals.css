@@ -10,3 +10,8 @@ body {
 *:focus-visible {
   outline: 2px dashed #E32002;
 }
+
+/* Dropdown MUI Component Autocomplete*/
+div[role="presentation"].MuiAutocomplete-popper {
+  z-index: 1000000;
+}

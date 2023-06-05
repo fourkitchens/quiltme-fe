@@ -87,6 +87,7 @@ export default function BottomBanner() {
     width: "95vw",
     bgcolor: "white",
     maxWidth: "50rem",
+    overflowX: "hidden",
     position: "relative",
     p: { xs: "1.5rem", md: "5rem" },
     pb: { xs: "2.5rem", md: "5rem" },
@@ -183,8 +184,9 @@ export default function BottomBanner() {
             </Typography>
             <Box sx={{ mt: "2.5rem", zIndex: 2, position: "relative" }}>
               <Button
+                target="_blank"
                 endIcon={<ArrowOutwardIcon />}
-                href="https://www.fourkitchens.com/contact/"
+                href="https://www.fourkitchens.com/team/"
               >
                 Meet the team
               </Button>

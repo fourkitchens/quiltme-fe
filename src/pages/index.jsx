@@ -1,5 +1,5 @@
 import { Container } from '@mui/material';
-import ImagesGrid from '../components/ui/03-organisms/images-grid';
+import ImagesGridWrapper from '../components/wrappers/images-grid-wrapper';
 
 export default function Home() {
   const containerStyles = {
@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <Container sx={containerStyles} maxWidth={false} disableGutters>
-      <ImagesGrid />
+      <ImagesGridWrapper />
     </Container>
   )
 }
