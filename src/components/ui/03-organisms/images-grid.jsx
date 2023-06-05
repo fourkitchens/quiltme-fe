@@ -2,11 +2,8 @@ import { useState } from "react";
 import ImageList from "../02-molecules/image-list";
 import ImagePreview from "../02-molecules/image-preview";
 import ImageControls from "../02-molecules/image-controls";
-import { addApolloState, initializeApollo } from '../../../lib/apolloClient';
-import UserSubmission from '../../../graphql/user-submission.graphql';
 
-export default function ImagesGrid(props) {
-  console.log('props', props);
+export default function ImagesGrid() {
   const [items, setItems] = useState(data);
 
   const scrollToItem = () => {
