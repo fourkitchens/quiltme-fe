@@ -1,9 +1,11 @@
-query {
-  nodeQuery {
+{
+  nodeQuery(filter: {conditions: [{operator: EQUAL, field: "type", value: ["user_submission"]}]}) {
     entities {
+      entityId
       ... on NodeUserSubmission {
-        title
-        entityId
+        name: title
+        email: fieldUserEmail
+        username: fieldDrupalHandle
         image: fieldChosenImageUrl
       }
     }

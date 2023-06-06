@@ -4,14 +4,21 @@ import PropTypes from 'prop-types';
 const SubmissionContext = React.createContext();
 
 export function SubmissionContextProvider({ children }) {
-  const [submission, setSubmission] = useState(null);
+  const [items, setItems] = useState([]);
+  const [filter, setFilter] = useState(null);
 
   const submissionContext = {
-    setData(data) {
-      setSubmission(data);
+    setItems(data) {
+      setItems(data)
     },
-    getData() {
-      return submission;
+    getItems() {
+      return items;
+    },
+    setFilter(data) {
+      setFilter(data);
+    },
+    getFilter() {
+      return filter;
     },
   };
 

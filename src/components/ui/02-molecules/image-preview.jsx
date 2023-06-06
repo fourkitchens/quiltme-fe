@@ -44,7 +44,7 @@ export default function ImagePreview({ items, setSelected }) {
   };
 
   const handleClose = () => {
-    submContext.setData(null);
+    submContext.setFilter(null);
     setSelected(-1);
     setData(null);
   };

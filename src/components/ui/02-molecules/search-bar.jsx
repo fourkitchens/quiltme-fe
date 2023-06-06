@@ -1,40 +1,38 @@
 import { useContext, useState } from "react";
 import Box from "@mui/material/Box";
-import debounce from "lodash/debounce";
 import Dialog from "@mui/material/Dialog";
-import { useQuery } from "@apollo/client";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Autocomplete from "@mui/material/Autocomplete";
 import DialogContent from "@mui/material/DialogContent";
 import SubmissionContext from "../../../context/submission";
-import SearchUser from "../../../graphql/search-user.graphql";
 
 // Icons
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/ImageSearch";
 import ArrowIcon from "@mui/icons-material/ArrowForwardIos";
+import { Avatar, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+
+const noOptions = {
+  noMatch: "No results",
+  minimumRequired: "Enter 2 caracters minimum",
+};
 
 export default function SearchBar() {
   // Language context.
   const submContext = useContext(SubmissionContext);
+  const options = submContext.getItems();
 
   const [open, setOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const { loading, data } = useQuery(SearchUser, {
-    variables: {
-      value: searchTerm,
-    },
-    onError() {
-      submContext.setData(null);
-    },
-  });
+  const [selectedOption, setSelectedOption] = useState();
+  const [noOptionsText, setNoOptionsText] = useState(
+    noOptions.minimumRequired
+  );
 
   const handleClose = (clear = true) => {
     setOpen(false);
-    if (clear) submContext.setData(null);
+    if (clear) submContext.setFilter(null);
   };
 
   const handleClickOpen = () => {
@@ -42,13 +40,66 @@ export default function SearchBar() {
   };
 
   const handleClickSubmit = () => {
-    if (data?.nodeQuery?.entities?.length) {
-      submContext.setData(data?.nodeQuery?.entities[0]);
+    if (selectedOption) {
+      submContext.setFilter(selectedOption);
       handleClose(false);
     }
   };
 
-  const setSearchTermDebounced = debounce(setSearchTerm, 500);
+  const handleFilter = (options, state) => {
+    let newOptions = [];
+    if (state.inputValue.length >= 2) {
+      options.forEach((element) => {
+        const { name, email, username } = element;
+        const inputValue = state.inputValue.toLowerCase();
+        if (
+          name?.toLowerCase().includes(inputValue) ||
+          email?.toLowerCase().includes(inputValue) ||
+          username?.toLowerCase().includes(inputValue)
+        ) {
+          newOptions.push(element);
+        }
+      });
+    }
+    return newOptions;
+  };
+
+  const renderOption = (props, item) => {
+    const primarylabel = item.username
+      ? `${item.name} (${item.username})`
+      : item.name;
+    return (
+      <ListItem key={props.id} {...props}>
+        <ListItemAvatar>
+          <Avatar>
+            <Box
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+              component="img"
+              alt={item.name}
+              src={item.image}
+            />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={primarylabel} secondary={item.email} />
+      </ListItem>
+    );
+  };
+
+  const handleChange = (_, value) => {
+    setSelectedOption(value);
+  };
+
+  const handleTextChange = (event) => {
+    if (event.target.value.length >= 2) {
+      setNoOptionsText(noOptions.noMatch);
+    } else {
+      setNoOptionsText(noOptions.minimumRequired);
+    }
+  };
 
   // Styles
   const wrapperStyles = {
@@ -120,7 +171,7 @@ export default function SearchBar() {
     minHeight: "2.75rem",
     "& .MuiOutlinedInput-notchedOutline": {
       border: "none",
-    }
+    },
   };
 
   const submitStyles = {
@@ -167,15 +218,15 @@ export default function SearchBar() {
           <Box sx={inputWrapperStyles}>
             <Autocomplete
               sx={inputStyles}
-              loading={loading}
-              options={data?.nodeQuery?.entities || []}
+              autoSelect={true}
+              options={options || []}
+              onChange={handleChange}
+              renderOption={renderOption}
+              filterOptions={handleFilter}
+              noOptionsText={noOptionsText}
+              getOptionLabel={(option) => `${option.entityId}. ${option.name}`}
               renderInput={(params) => (
-                <TextField
-                  {...params}
-                  onChange={(e) => {
-                    setSearchTermDebounced(e.target.value);
-                  }}
-                />
+                <TextField {...params} onChange={handleTextChange} />
               )}
             />
             <IconButton

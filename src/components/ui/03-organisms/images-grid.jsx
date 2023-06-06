@@ -7,7 +7,7 @@ import SubmissionContext from "../../../context/submission";
 export default function ImagesGrid({ data }) {
   // Language context.
   const submContext = useContext(SubmissionContext);
-  const submission = submContext.getData();
+  const filter = submContext.getFilter();
 
   const [items, setItems] = useState(data);
 
@@ -32,7 +32,7 @@ export default function ImagesGrid({ data }) {
     });
 
     setItems(newState);
-    setTimeout(() => submContext.setData(null));
+    setTimeout(() => submContext.setFilter(null));
   };
 
   const setFocus = (index) => {
@@ -45,9 +45,9 @@ export default function ImagesGrid({ data }) {
     scrollToItem();
   };
 
-  if (submission) {
+  if (filter) {
     items.map((item, index) => {
-      if (!item.selected && item.entityId === submission.entityId) {
+      if (!item.selected && item.entityId === filter.entityId) {
         setSelected(index);
         scrollToItem();
       }
